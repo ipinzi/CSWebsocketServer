@@ -52,6 +52,7 @@ public class Server
         OnWebsocketClosed += (socket) =>
         {
             Console.WriteLine($"Server socket has been CLOSED");
+            Clients.Remove(socket);
         };
     }
 
