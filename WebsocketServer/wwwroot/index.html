@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="gb">
+<head>
+    <title>Home Page</title>
+    <script>
+        let socket = new WebSocket("ws://localhost:4000/");
+        socket.onopen = function(event) {
+            console.log("Connected to the WebSocket server");
+            socket.send(JSON.stringify({cmd: "Ping", data: "This is the frikkin data!"}))
+        };
+        socket.onmessage = function(event) {
+            console.log("Received: ", event.data);
+        };
+        socket.onerror = function(error) {
+            console.log("WebSocket Error: ", error);
+        };
+        socket.onclose = function(event) {
+            console.log("WebSocket connection closed");
+        };
+    </script>
+</head>
+<body>
+<h1>Welcome to the Home Page</h1>
+<p>This is the home page. It is connected to the WebSocket server.</p>
+</body>
+</html>
